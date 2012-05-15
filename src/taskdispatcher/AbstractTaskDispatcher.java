@@ -100,7 +100,7 @@ public abstract class AbstractTaskDispatcher <R extends AbstractTaskRunner<J>, J
     public abstract void end();
     
     /**
-     * Add a properties file of a job to executed by this task dispatcher.
+     * Add a job to executed by this task dispatcher.
      * @param job The job to be executed.
      */
     public void addJob(J job){

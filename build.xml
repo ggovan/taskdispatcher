@@ -1,0 +1,98 @@
+<project basedir="." default="build-jar" name="taskdispatcher">
+	<property name="PROJECTNAME" value="taskdispatcher"/>
+	<property name="HOME" value="."/>
+	<property name="SRC" value="${HOME}/src"/>
+	<property name="BIN" value="${HOME}/bin"/>
+	<property name="JAR" value="taskdispatcher.jar"/>
+	<property name="LIB" value="${HOME}/lib"/>
+	<property name="TEST_DIR" value="${HOME}/tests"/>
+	<property name="JAVADOC" value="${HOME}/javadoc"/>
+
+	<path id="classpath.base">
+		<pathelement location="${BIN}" />
+	</path>
+	<path id="classpath.test">
+		<pathelement location="/Projects/Java/Lib/junit.jar" />
+		<pathelement location="${TEST_DIR}" />
+		<path refid="classpath.base" />
+	</path>
+
+	<target name="clean">
+		<delete dir="${BIN}"/>
+		<delete dir="${JAVADOC}"/>
+		<delete file="${JAR}"/>
+	</target>
+
+	<target name="compile-test" depends="build-jar">
+		<javac srcdir="${TEST_DIR}" destdir="${BIN}" debuglevel="lines,vars,source" debug="true">
+			<classpath refid="classpath.test"/>
+		</javac>
+	</target>
+
+	<target name="test" depends="compile-test">
+		<junit>
+			<classpath refid="classpath.base" />
+			<formatter type="brief" usefile="false" />
+			<test name="${PROJECTNAME}.AllTests" />
+		</junit>
+	</target>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="${BIN}"/>
+		<javac srcdir="${SRC}" destdir="${BIN}" debuglevel="lines,vars,source" debug="true">
+			<classpath refid="classpath.base"/>
+		</javac>
+	</target>   
+
+	<target name="warnings" depends="clean">
+		<mkdir dir="${BIN}"/>
+		<javac srcdir="${SRC}" destdir="${BIN}" debuglevel="lines,vars,source" debug="true">
+			<compilerarg value="-Xlint"/>
+			<classpath refid="classpath.base"/>
+		</javac>
+	</target>   
+
+	<target name="compile1.5" depends="clean">
+		<mkdir dir="${BIN}"/>
+		<javac target="1.5" srcdir="${SRC}" destdir="${BIN}" debuglevel="lines,vars,source" debug="true" source="1.5">
+			<classpath refid="classpath.base"/>
+		</javac>
+	</target>   
+
+
+	<target name="build-jar" depends="compile">
+		<jar destfile="${JAR}" basedir="${BIN}">
+			<!--<zipfileset src="/u1/pg/gg32/lib/matlabcontrol.jar"/>-->
+			<manifest>
+				<attribute name="Main-Class" value="${PROJECTNAME}/Main" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="build-jar1.5" depends="compile1.5">
+		<jar destfile="${JAR}" basedir="${BIN}">
+			<!--<zipfileset src="/u1/pg/gg32/lib/matlabcontrol.jar"/>-->
+			<manifest>
+				<attribute name="Main-Class" value="${PROJECTNAME}/Main" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="javadoc" depends="build-jar,test">
+		<mkdir dir="${JAVADOC}"/>
+		<javadoc destdir="${JAVADOC}" access="private">
+			<classpath refid="classpath.base"/>
+			<fileset dir="${SRC}/" includes="**/*.java" />
+		</javadoc>
+	</target>
+
+	<target name="deploy" depends="javadoc">
+	</target>
+
+	<target name="run" depends="build-jar">
+		<java jar="${JAR}" fork="true">
+			<classpath refid="classpath.base"/>
+		</java>
+	</target>
+
+</project>

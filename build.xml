@@ -78,7 +78,7 @@
 		</jar>
 	</target>
 
-	<target name="javadoc" depends="build-jar,test">
+	<target name="javadoc" depends="build-jar">
 		<mkdir dir="${JAVADOC}"/>
 		<javadoc destdir="${JAVADOC}" access="private">
 			<classpath refid="classpath.base"/>

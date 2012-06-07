@@ -1,7 +1,7 @@
 package taskdispatcher;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * An abstract class providing base functionality for other classes that wish to
@@ -21,11 +21,11 @@ public abstract class AbstractTaskRunner <J extends Job> implements Runnable {
     /**
      * Unfinished jobs that this TaskRunner may or may not be running.
      */
-    protected ConcurrentHashMap<String, J> jobs = new ConcurrentHashMap<>();
+    protected HashMap<String, J> jobs = new HashMap<>();
     /**
      * Jobs ( and their results ) that have been completed.
      */
-    protected Map<String, J> finishedJobs = new ConcurrentHashMap<>();
+    protected Map<String, J> finishedJobs = new HashMap<>();
     /**
      * The dispatcher that owns this TaskRunner
      */
@@ -63,7 +63,7 @@ public abstract class AbstractTaskRunner <J extends Job> implements Runnable {
      */
     protected void jobFailed(String jobID, String error) {
         System.out.println("JobFailed\t" + error);
-        if (jobs.contains(jobID)) {
+        if (jobs.containsKey(jobID)) {
             jobs.remove(jobID);
         }
         dispatcher.jobFailed(jobID, error);

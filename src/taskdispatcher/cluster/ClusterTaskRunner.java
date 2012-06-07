@@ -80,6 +80,8 @@ public class ClusterTaskRunner<J extends Job> extends AbstractTaskRunner<J> {
      */
     @Override
     public void shutdown() {
+		if(!isAlive())
+			return;
 		try{
 			out.writeObject(ClusterCommunicationTypes.FINISHED);
 			out.flush();

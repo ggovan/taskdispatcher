@@ -15,7 +15,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * that runner will be reassigned to the others.
  * @author gg32
  * @param <R> The type of the TaskRunner used by this instance.
- * @param <J> The type of job to be taskdispatcher
+ * @param <J> The type of job to be distributed
  */
 public abstract class AbstractTaskDispatcher <R extends AbstractTaskRunner<J>, J extends Job> {
     //TODO Error recovery from failed jobs.

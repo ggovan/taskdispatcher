@@ -16,6 +16,7 @@ public class ClusterMonitorPanel extends JPanel{
     //TODO show machine panels for the machine that are listed in the properties
     //even if they have not connected yet, or ever will.
     
+	private static final long serialVersionUID = -1300212134839933113L;
     private JLabel portLabel;
     private JPanel machineContainer;
     private List<MachinePanel> machinePanels = new LinkedList<MachinePanel>();

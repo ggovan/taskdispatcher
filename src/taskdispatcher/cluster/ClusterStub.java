@@ -90,6 +90,10 @@ public class ClusterStub {
                     safe = true;
                     break outer;
                 }
+			case FINISHED_JOB:
+			case FINISHED_SEED:
+			case JOB_FAILED:
+				throw new Error("This message should not have been sent to the runner!\n" + mType);
             }
         }
         try{
@@ -98,7 +102,8 @@ public class ClusterStub {
             out.close();
         }
         catch(IOException e){
-            
+            System.out.println("Gone wrong");
+			System.exit(0);
         }
         finally{
             System.out.println("Closing down");

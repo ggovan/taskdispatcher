@@ -19,6 +19,7 @@ public class MachinePanel extends JPanel{
     //TODO Add a 'blank' mode to allow the user to enter the details of a machine
     //that we'll then try to connect to.
     
+	private static final long serialVersionUID = 6061316322171951957L;
     private static String COMPLETED = "Jobs completed: ";
     private static String ASSIGNED = "Jobs assigned: ";
     

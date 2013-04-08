@@ -3,7 +3,6 @@ package taskdispatcher.threaded;
 import taskdispatcher.AbstractTaskDispatcher;
 import taskdispatcher.AbstractTaskRunner;
 import taskdispatcher.Job;
-import java.util.Properties;
 
 /**
  * An implementation of AbstractTaskRunner to be used by the ThreadedDispatcher.

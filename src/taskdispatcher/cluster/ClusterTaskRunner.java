@@ -117,6 +117,7 @@ public class ClusterTaskRunner<J extends Job> extends AbstractTaskRunner<J> {
      * added to the finished jobs collection.
      * @throws IOException 
      */
+    @SuppressWarnings(value = {"unchecked"})
     private void finishedJob() throws IOException,ClassNotFoundException {
 		Object o = in.readObject();
 		J job=null;
@@ -181,6 +182,10 @@ public class ClusterTaskRunner<J extends Job> extends AbstractTaskRunner<J> {
                                 jobFailed(jid,problem);
                                 break;
                             }
+						case END_TRANSMISSION:
+						case FINISHED_SEED:
+						case NEW_JOB:
+							throw new Error("This message should not have been sent to the dispatcher!\n" + mType);
                         }
                     }
                     error = true;

@@ -81,7 +81,7 @@ public class ClusterDispatcher <J extends Job> extends AbstractTaskDispatcher <C
             try{
                 ProcessBuilder pb = new ProcessBuilder();
                 pb.command(cmdlist);
-                Process exec = pb.start();
+                /*Process exec =*/ pb.start();
             }
             catch(IOException e){
                 System.out.println("Failed to launch on " + mn);

@@ -7,3 +7,7 @@
 manifest.mf
 nbbuild.xml
 nbproject/
+target/
+.settings/
+.classpath
+.project

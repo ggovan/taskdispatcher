@@ -12,8 +12,8 @@
  * <li /> You must first create a class that implements the {@link taskdispatcher.Job} interface.
  * <li /> Then create a TaskDispatcher:
  * <ul>
- * <li />The {@link taskdispatcher.cluster.ClusterDispatcher} is to be used on a cluster of machines.
- * <li />The {@link taskdispatcher.threaded.ThreadedDispatcher} is an alternate dispatcher to be used on a single multicore machine.
+ * <li />The {@link org.lambdaunbound.taskdispatcher.cluster.ClusterDispatcher} is to be used on a cluster of machines.
+ * <li />The {@link org.lambdaunbound.taskdispatcher.threaded.ThreadedDispatcher} is an alternate dispatcher to be used on a single multicore machine.
  * </ul>
  * <li />Jobs are then added to the TaskDispatcher using {@link taskdispatcher.AbstractTaskDispatcher#addJob(Job)}.
  * <li />Calling {@link taskdispatcher.AbstractTaskDispatcher#start()} will cause the TaskDispatcher to serialise the jobs and issue them to the remote machines.
@@ -32,6 +32,4 @@
  *  <li /> Be careful what you reference from you {@link taskdispatcher.Job}s, as this will all be serialised when sent across the network. Null out any fields that shouldn't be needed.
  * </ul>
  */
-package taskdispatcher;
-import taskdispatcher.cluster.ClusterDispatcher;
-import taskdispatcher.threaded.ThreadedDispatcher;
+package org.lambdaunbound.taskdispatcher;

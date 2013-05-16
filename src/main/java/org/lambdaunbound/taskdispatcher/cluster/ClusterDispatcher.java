@@ -1,7 +1,7 @@
-package taskdispatcher.cluster;
+package org.lambdaunbound.taskdispatcher.cluster;
 
-import taskdispatcher.AbstractTaskDispatcher;
-import taskdispatcher.Job;
+import org.lambdaunbound.taskdispatcher.AbstractTaskDispatcher;
+import org.lambdaunbound.taskdispatcher.Job;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class ClusterDispatcher <J extends Job> extends AbstractTaskDispatcher <C
             return;
         }
         String socket = ""+ch.socket.getLocalPort();
-		String launcher = "java -cp " + classPath + " " + taskdispatcher.cluster.ClusterStub.class.getCanonicalName() + " " + hostname + " " + socket;
+		String launcher = "java -cp " + classPath + " " + org.lambdaunbound.taskdispatcher.cluster.ClusterStub.class.getCanonicalName() + " " + hostname + " " + socket;
         String uname = System.getProperty("user.name");
         String pwd = System.getProperty("user.dir");
         

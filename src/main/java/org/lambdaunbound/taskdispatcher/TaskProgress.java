@@ -1,6 +1,6 @@
-package taskdispatcher;
+package org.lambdaunbound.taskdispatcher;
 
-import taskdispatcher.cluster.MachinePanel;
+import org.lambdaunbound.taskdispatcher.cluster.MachinePanel;
 
 /**
  *An interface through which TaskDispatchers can update a listener of its progress.

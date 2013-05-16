@@ -1,7 +1,7 @@
-package taskdispatcher.threaded;
+package org.lambdaunbound.taskdispatcher.threaded;
 
-import taskdispatcher.AbstractTaskDispatcher;
-import taskdispatcher.Job;
+import org.lambdaunbound.taskdispatcher.AbstractTaskDispatcher;
+import org.lambdaunbound.taskdispatcher.Job;
 
 /**
  * An implementation of AbstractTaskDispatcher to run on a machine with multiple

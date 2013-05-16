@@ -1,4 +1,4 @@
-package taskdispatcher;
+package org.lambdaunbound.taskdispatcher;
 
 import java.util.HashMap;
 import java.util.Map;

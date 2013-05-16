@@ -1,4 +1,4 @@
-package taskdispatcher.cluster;
+package org.lambdaunbound.taskdispatcher.cluster;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;

@@ -1,6 +1,6 @@
-package taskdispatcher.cluster;
+package org.lambdaunbound.taskdispatcher.cluster;
 
-import taskdispatcher.Job;
+import org.lambdaunbound.taskdispatcher.Job;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

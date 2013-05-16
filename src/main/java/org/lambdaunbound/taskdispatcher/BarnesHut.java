@@ -1,8 +1,8 @@
-package taskdispatcher;
+package org.lambdaunbound.taskdispatcher;
 
 //Start the applet and define a few necessary variables
 
-import taskdispatcher.threaded.ThreadedDispatcher;
+import org.lambdaunbound.taskdispatcher.threaded.ThreadedDispatcher;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -55,23 +55,22 @@ public class BarnesHut {
 	}
 
 	public ArrayList<Body> readFile(String filename)throws Exception{
-		try{
-		BufferedReader in = new BufferedReader(new FileReader(filename));
-		String[] line = in.readLine().split(" ");
-		int n = Integer.parseInt(line[0]);
-		ArrayList<Body> bodies = new ArrayList<>(n);
-		for(int i=0;i<n;i++){
-			double mass = Double.parseDouble(line[i+1]);
-			double x = Double.parseDouble(line[i+1+n]);
-			double y = Double.parseDouble(line[i+1+2*n]);
-			double z = Double.parseDouble(line[i+1+3*n]);
-			double vx = Double.parseDouble(line[i+1+4*n]);
-			double vy = Double.parseDouble(line[i+1+5*n]);
-			double vz = Double.parseDouble(line[i+1+6*n]);
-			Body b = new Body(x,y,z,mass,vx,vy,vz);
-			bodies.add(b);
-		}
-		return bodies;
+		try(BufferedReader in = new BufferedReader(new FileReader(filename))){
+			String[] line = in.readLine().split(" ");
+			int n = Integer.parseInt(line[0]);
+			ArrayList<Body> bodies = new ArrayList<>(n);
+			for(int i=0;i<n;i++){
+				double mass = Double.parseDouble(line[i+1]);
+				double x = Double.parseDouble(line[i+1+n]);
+				double y = Double.parseDouble(line[i+1+2*n]);
+				double z = Double.parseDouble(line[i+1+3*n]);
+				double vx = Double.parseDouble(line[i+1+4*n]);
+				double vy = Double.parseDouble(line[i+1+5*n]);
+				double vz = Double.parseDouble(line[i+1+6*n]);
+				Body b = new Body(x,y,z,mass,vx,vy,vz);
+				bodies.add(b);
+			}
+			return bodies;
 		}
 		catch(Exception e){
 			e.printStackTrace();

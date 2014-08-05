@@ -1,5 +1,8 @@
 package org.lambdaunbound.taskdispatcher.threaded;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import org.lambdaunbound.taskdispatcher.AbstractTaskDispatcher;
 import org.lambdaunbound.taskdispatcher.AbstractTaskRunner;
 import org.lambdaunbound.taskdispatcher.Job;
@@ -46,6 +49,8 @@ public class ThreadedRunner<J extends Job> extends AbstractTaskRunner<J> {
     @Override
     public void addTask(J job) {
         //System.out.println("Recieved Job, sending it out");
+    	assert(job != null);
+    	assert(job.getID()!=null);
         jobs.put(job.getID(),job);
         thread.interrupt();
     }
@@ -58,27 +63,28 @@ public class ThreadedRunner<J extends Job> extends AbstractTaskRunner<J> {
     public void run() {
         setAlive(true);
         while(live){
-            if(!jobs.isEmpty()){
-                String jobID=null;
-                for(String jid : jobs.keySet()){
-                    jobID = jid;
-                    break;
-                }
-                
-				J job = jobs.get(jobID);
+        	Iterator<String> ks = jobs.keySet().iterator(); 
+            if(ks.hasNext()){
+            	String jobID=ks.next();
+
+                assert(jobID!=null);
+                J job = jobs.get(jobID);
+                assert(job!=null);
 
                 job.run();
                 finishedJob(jobID,job);
 
             }
-            synchronized(this){
-                if(live&&!thread.isInterrupted()){
-                    try{
-                        wait(5000);
-                    }
-                    catch(InterruptedException e){
-                    }
-                }
+            else{
+            	synchronized(this){
+            		if(live&&!thread.isInterrupted()){
+            			try{
+            				wait(5000);
+            			}
+            			catch(InterruptedException e){
+            			}
+            		}
+            	}
             }
         }
         setAlive(false);

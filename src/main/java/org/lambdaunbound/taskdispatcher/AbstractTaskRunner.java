@@ -1,5 +1,6 @@
 package org.lambdaunbound.taskdispatcher;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public abstract class AbstractTaskRunner <J extends Job> implements Runnable {
     /**
      * Unfinished jobs that this TaskRunner may or may not be running.
      */
-    protected HashMap<String, J> jobs = new HashMap<>();
+    protected Map<String, J> jobs = Collections.synchronizedMap(new HashMap<String,J>());
     /**
      * Jobs ( and their results ) that have been completed.
      */

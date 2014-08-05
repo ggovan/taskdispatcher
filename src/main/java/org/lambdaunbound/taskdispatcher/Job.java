@@ -19,13 +19,6 @@ import java.io.Serializable;
  */
 public interface Job extends Runnable, Serializable{
 
-
-	/**
-	 * Set the ID of this job.
-	 * @param ID The ID for this job.
-	 */
-	public void setID(String ID);
-
 	/**
 	 * Get this Job's ID.
 	 * @return The ID of this Job

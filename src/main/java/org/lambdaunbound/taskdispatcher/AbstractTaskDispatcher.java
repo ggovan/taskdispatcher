@@ -104,6 +104,7 @@ public abstract class AbstractTaskDispatcher <R extends AbstractTaskRunner<J>, J
      * @param job The job to be executed.
      */
     public void addJob(J job){
+    	assert(job != null);
         jobs.put(job.getID(), job);
     }
     
